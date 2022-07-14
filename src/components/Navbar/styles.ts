@@ -86,7 +86,7 @@ export const DiscordCTA = styled.a`
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
-    font-family: Whitney, "Open Sans", Helvetica, sans-serif;
+    font-family: 'Lato';
     font-weight: 400;
     font-size: 11pt;
     border-radius: 3px;
