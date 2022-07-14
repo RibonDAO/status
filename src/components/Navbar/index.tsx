@@ -1,7 +1,7 @@
 import * as S from "./styles";
 import Logo from "../../assets/logo.png";
 
-function Navbar() {
+function Navbar(): JSX.Element {
   return (
     <S.Navbar>
       <S.Container>
