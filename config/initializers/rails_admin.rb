@@ -1,28 +1,19 @@
 RailsAdmin.config do |config|
   config.asset_source = :sprockets
 
-  ### Popular gems integration
+  config.authenticate_with do
+    # this is a rails controller helper
+    authenticate_or_request_with_http_basic('Login required') do |email, password|
 
-  ## == Devise ==
-  # config.authenticate_with do
-  #   warden.authenticate! scope: :user
-  # end
-  # config.current_user_method(&:current_user)
+      # Here we're checking for username & password provided with basic auth
+      resource = Admin.find_by(email: email)
 
-  ## == CancanCan ==
-  # config.authorize_with :cancancan
-
-  ## == Pundit ==
-  # config.authorize_with :pundit
-
-  ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
-
-  ### More at https://github.com/railsadminteam/rails_admin/wiki/Base-configuration
-
-  ## == Gravatar integration ==
-  ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar = true
+      # we're using devise helpers to verify password and sign in the user
+      if resource&.valid_password?(password)
+        sign_in :admin, resource
+      end
+    end
+  end
 
   config.actions do
     dashboard                     # mandatory
@@ -39,4 +30,6 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.included_models = [Incident]
 end
