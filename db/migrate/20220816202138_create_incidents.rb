@@ -4,6 +4,7 @@ class CreateIncidents < ActiveRecord::Migration[7.0]
       t.string :title
       t.text :description
       t.integer :severity_level
+      t.boolean :resolved
 
       t.timestamps
     end
