@@ -229,6 +229,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    shoulda-matchers (5.1.0)
+      activesupport (>= 5.2.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -280,6 +282,7 @@ DEPENDENCIES
   rest-client
   rspec-rails
   sassc-rails
+  shoulda-matchers
   sprockets-rails
   stimulus-rails
   turbo-rails
