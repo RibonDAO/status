@@ -1,24 +1,17 @@
-# README
+# Status Dashboard
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How to run the project
 
-Things you may want to cover:
+Obs: You need rails installed to run those commands. You can check how to
+install it [here](https://www.howtoforge.com/tutorial/ubuntu-ruby-on-rails/).
 
-* Ruby version
+- clone this repository: `git clone git@github.com:RibonDAO/status.git`
+- run the bundle install command: `bundle install`
+- run the database setup command: `rails db:setup`
+- run the rails server: `rails s`
 
-* System dependencies
+You can check the http://localhost:3000/ and see if the Rails welcome page appears.
 
-* Configuration
+## How to run the tests
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- run the command: `rspec`
