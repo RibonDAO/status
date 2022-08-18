@@ -6,8 +6,6 @@ class HealthCheckReport
   end
 
   def generate
-    providers.map do |provider|
-      result = provider.get
-    end
+    providers.map(&:get)
   end
 end

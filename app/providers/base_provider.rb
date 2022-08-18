@@ -13,10 +13,8 @@ class BaseProvider
     }
   end
 
-  private
-
   def self.sanitize_url(url)
-    URI.join(url, "/").to_s
+    URI.join(url, '/').to_s
   end
 
   def self.sanitize_statuses(response)
@@ -24,32 +22,28 @@ class BaseProvider
       JSON.parse(response.body)
     else
       {
-        application: response.code === 200
+        application: response.code == 200
       }
     end
   end
 
   def self.fetch(url)
-    begin
-      RestClient::Request.execute(
-        method: :get,
-        url:,
-        timeout: ACCEPTABLE_TIMEOUT
-      )
-    rescue => e
-      OpenStruct.new({
-        code: 500,
-        body: {application: false}.to_json
-      })
-    end
+    RestClient::Request.execute(
+      method: :get,
+      url:,
+      timeout: ACCEPTABLE_TIMEOUT
+    )
+  rescue StandardError
+    OpenStruct.new({
+                     code: 500,
+                     body: { application: false }.to_json
+                   })
   end
 
   def self.valid_json?(json)
-    begin
-      JSON.parse(json)
-      return true
-    rescue Exception => e
-      return false
-    end
+    JSON.parse(json)
+    true
+  rescue StandardError
+    false
   end
 end

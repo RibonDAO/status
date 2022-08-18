@@ -6,7 +6,7 @@ module HealthCheckHelper
   end
 
   def format_resource_name(name)
-    return name.upcase if name == :api || name == 'api'
+    return name.upcase if [:api, 'api'].include?(name)
 
     name.capitalize
   end
