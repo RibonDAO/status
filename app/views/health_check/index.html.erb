@@ -8,7 +8,7 @@
     </a>
     <div class="d-inline">
       <a href="https://discord.gg/DBcwmDrkpy" target="_blank">
-        <button class="discord-button"><span class="fa-brands fa-discord"></span> Subscribe</button>
+        <button class="discord-button"><span class="fa-brands fa-discord"></span> <%= t("subscribe") %></button>
       </a>
     </div>
   </div>
@@ -83,10 +83,16 @@
       </div>
       <div class="row text-center mt-4 mb-4">
         <p>
-          You can view real-time updates about incidents, scheduled maintenance, etc. joining our 
-          <a href="https://discord.gg/DBcwmDrkpy" target="_blank" class="text-purple"><b>Discord Community</b>.</a>
+          <%= t("footer_text") %>
+          <a href="https://discord.gg/DBcwmDrkpy" target="_blank" class="text-purple">
+            <b>
+              <%= t("discord_community") %>
+            </b>
+          </a>.
         </p>
-        <p class="text-secondary">Incident logs can be found in the <u>#incidents</u> channel.</p>
+        <p class="text-secondary">
+          <%= t("footer_hint") %>
+        </p>
       </div>
     </div>
   </div>
