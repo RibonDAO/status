@@ -84,5 +84,25 @@ RSpec.describe BaseProvider, type: :service do
         expect(subject).to eq(expected_result)
       end
     end
+
+    context "when the restclient request fails" do
+      let(:name) { "Core API" }
+      let(:url) { "http://url.ribon.io/health" }
+      let(:response) { OpenStruct.new({code: 500, body: "not valid JSON"}) }
+      let(:expected_result) do
+        {
+          name: "Core API",
+          url: "http://url.ribon.io/",
+          statuses: {application: false}
+        }
+      end
+      before do
+        allow(RestClient::Request).to receive(:execute).and_raise(RestClient::Exception)
+      end
+
+      it "returns the expected result" do
+        expect(subject).to eq(expected_result)
+      end
+    end
   end
 end
