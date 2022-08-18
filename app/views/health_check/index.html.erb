@@ -1,0 +1,56 @@
+<nav class="navbar navbar-light bg-white">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="https://ribon.io/wp-content/uploads/2021/03/cropped-Ribon-logo-verde.png" width="100" class="d-inline-block align-top" alt="">
+      <span class="brand-text">
+        Status
+      </span>
+    </a>
+    <div class="d-inline">
+      <a href="https://discord.gg/DBcwmDrkpy" target="_blank">
+        <button class="discord-button"><span class="fa-brands fa-discord"></span> Subscribe</button>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid p-0 splash-img">
+</div>
+<div class="container mt-4">
+  <%
+    @general_status = general_status(@report)
+  %>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="alert alert-<%= @general_status[:class_suffix] %>">
+          <strong><%= @general_status[:message] %></strong>
+        </div>
+      <br>
+      <div class="row g-0 justify-content-center">
+        <% @report.each do |service| %>
+          <h4><%= service[:name] %></h4>
+          <hr>
+          <% service[:statuses].each do |resource, status| %>
+            <div class="col-12 d-flex align-items-center justify-content-between status-card">
+              <p class="my-auto">
+                <strong>
+                  <%= format_resource_name(resource) %>
+                </strong>
+              </p>
+              <p class="my-auto status-badge-<%= status ? 'operational' : 'degraded' %>">
+                <%= format_resource_status(status) %>
+              </p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="row text-center mt-4 mb-4">
+        <p>
+          You can view real-time updates about incidents, scheduled maintenance, etc. joining our 
+          <a href="https://discord.gg/DBcwmDrkpy" target="_blank" class="text-purple"><b>Discord Community</b>.</a>
+        </p>
+        <p class="text-secondary">Incident logs can be found in the <u>#incidents</u> channel.</p>
+      </div>
+    </div>
+  </div>
+</div>
