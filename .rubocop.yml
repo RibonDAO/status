@@ -1,0 +1,75 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'Rakefile'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'config.ru'
+    - 'lib/generators/**/*'
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
+    - "app/controllers/rails_admin/**/*"
+
+Layout/LineLength:
+  Max: 115
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+
+Metrics/MethodLength:
+  Max: 12
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/PredicateMatcher:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Lint/SuppressedException:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 8
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/OpenStructUse:
+  Enabled: false
+
+Lint/MissingSuper:
+  Exclude:
+  - app/providers/**/*
+
+Rails/FilePath:
+  Enabled: false
