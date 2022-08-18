@@ -30,4 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  all_systems_operational: "All Systems Operational"
+  one_or_more_services_degraded: "One or more services are degraded."
+  operational: "Operational"
+  degraded: "Degraded"
