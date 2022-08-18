@@ -37,12 +37,45 @@
                   <%= format_resource_name(resource) %>
                 </strong>
               </p>
-              <p class="my-auto status-badge-<%= status ? 'operational' : 'degraded' %>">
+              <p class="my-auto status-badge-<%= status ? 'success' : 'warning' %>">
                 <%= format_resource_status(status) %>
               </p>
             </div>
           <% end %>
         <% end %>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mt-4 mb-2">
+            <strong>
+              <%= t("latest_incidents") %>
+            </strong>
+          </h4>
+          <ul class="timeline">
+            <%
+              @incidents.each do |incident|
+
+              severity = badge_data_for_severity_level(incident.severity_level)
+              resolved = badge_data_for_resolved_status(incident.resolved)
+            %>
+              <li class="w-100">
+                <div class="d-flex justify-content-between w-100 incident">
+                  <h5>
+                    <strong>
+                      <%= incident.title %>
+                      <span class="badge rounded-pill bg-<%= severity[:color] %>"><%= severity[:text] %></span>
+                      <span class="badge rounded-pill bg-<%= resolved[:color] %>"><%= resolved[:text] %></span>
+                    </strong>
+                  </h5>
+                  <span class="text-secondary d-none d-md-block">
+                    <%= incident.created_at.strftime("#{incident.created_at.day.ordinalize} of %B, %Y") %>
+                  </span>
+                </div>
+                <p><%= incident.description %></p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
       <div class="row text-center mt-4 mb-4">
         <p>
