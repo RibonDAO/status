@@ -84,4 +84,61 @@ RSpec.describe HealthCheckHelper, type: :helper do
       end
     end
   end
+
+  describe "#badge_data_for_severity_level" do
+    subject { helper.badge_data_for_severity_level(severity_level) }
+
+    context "when the severity level is 'minor'" do
+      let(:severity_level) { 'minor' }
+      let(:expected_result) do
+        { color: 'info', text: I18n.t('minor') }
+      end
+
+      it "returns the expected result" do
+        expect(subject).to eq(expected_result)
+      end
+    end
+    context "when the severity level is 'major'" do
+      let(:severity_level) { 'major' }
+      let(:expected_result) do
+        { color: 'warning', text: I18n.t('major') }
+      end
+
+      it "returns the expected result" do
+        expect(subject).to eq(expected_result)
+      end
+    end
+    context "when the severity level is 'critical'" do
+      let(:severity_level) { 'critical' }
+      let(:expected_result) do
+        { color: 'danger', text: I18n.t('critical') }
+      end
+
+      it "returns the expected result" do
+        expect(subject).to eq(expected_result)
+      end
+    end
+  end
+
+  describe "#badge_data_for_resolved_status" do
+    subject { helper.badge_data_for_resolved_status(resolved_status) }
+
+    context "when the resolved status is true" do
+      let(:resolved_status) { true }
+      let(:expected_result) { { color: 'success', text: I18n.t('resolved') } }
+
+      it "returns the expected result" do
+        expect(subject).to eq(expected_result)
+      end
+    end
+
+    context "when the resolved status is false" do
+      let(:resolved_status) { false }
+      let(:expected_result) { { color: 'warning', text: I18n.t('unresolved') } }
+
+      it "returns the expected result" do
+        expect(subject).to eq(expected_result)
+      end
+    end
+  end
 end

@@ -6,7 +6,7 @@ module HealthCheckHelper
   end
 
   def format_resource_name(name)
-    return name.upcase if name == :api
+    return name.upcase if name == :api || name == 'api'
 
     name.capitalize
   end
@@ -15,6 +15,23 @@ module HealthCheckHelper
     return I18n.t('operational') if status
 
     I18n.t('degraded')
+  end
+
+  def badge_data_for_severity_level(severity_level)
+    case severity_level.to_sym
+    when :minor
+      { color: 'info', text: I18n.t('minor') }
+    when :major
+      { color: 'warning', text: I18n.t('major') }
+    when :critical
+      { color: 'danger', text: I18n.t('critical') }
+    end
+  end
+
+  def badge_data_for_resolved_status(resolved_status)
+    return { color: 'success', text: I18n.t('resolved') } if resolved_status
+
+    { color: 'warning', text: I18n.t('unresolved') }
   end
 
   private
