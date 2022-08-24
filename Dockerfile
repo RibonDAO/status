@@ -10,4 +10,4 @@ COPY . /app
 EXPOSE 8080
 
 ENTRYPOINT ["bin/entry.sh"]
-CMD ["puma","-C","config/docker_puma.rb","-p","8080"]
+CMD ["puma","-C","config/puma.rb","-p","8080"]
