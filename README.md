@@ -1,4 +1,4 @@
-# Status Dashboard
+# [Status Dashboard](https://status.ribon.io/)
 
 ## How to run the project
 
