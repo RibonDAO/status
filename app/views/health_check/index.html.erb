@@ -1,11 +1,8 @@
 <nav class="navbar navbar-light bg-white">
   <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="https://ribon.io/wp-content/uploads/2021/03/cropped-Ribon-logo-verde.png" width="100" class="d-inline-block align-top" alt="">
-      <span class="brand-text">
-        Status
-      </span>
-    </a>
+    <div class="navbar-brand">
+      <img src="<%= asset_path('logo.svg') %>" width="100" class="d-inline-block align-top" alt="Ribon logo">
+    </div>
     <div class="d-inline">
       <a href="https://discord.gg/DBcwmDrkpy" target="_blank">
         <button class="discord-button"><span class="fa-brands fa-discord"></span> <%= t("subscribe") %></button>
@@ -15,10 +12,6 @@
 </nav>
 </div>
 <div class="container mt-4">
-  <%
-    @general_status = general_status(@report)
-  %>
-
   <div class="row justify-content-center">
     <div class="col-lg-8">
         <h4 class="mb-3">
@@ -48,39 +41,41 @@
           <% end %>
         <% end %>
       </div>
-      <div class="row">
-        <div class="col-12 mt-4">
-          <h4 class="mt-4 mb-2">
-            <strong>
-              <%= t("latest_incidents") %>
-            </strong>
-          </h4>
-          <ul class="timeline">
-            <%
-              @incidents.each do |incident|
+      <% if @incidents.present? %>
+        <div class="row">
+          <div class="col-12 mt-4">
+            <h4 class="mt-4 mb-2">
+              <strong>
+                <%= t("latest_incidents") %>
+              </strong>
+            </h4>
+            <ul class="timeline">
+              <%
+                @incidents.each do |incident|
 
-              severity = badge_data_for_severity_level(incident.severity_level)
-              resolved = badge_data_for_resolved_status(incident.resolved)
-            %>
-              <li class="w-100">
-                <div class="d-flex justify-content-between w-100 incident">
-                  <h5>
-                    <strong>
-                      <%= incident.title %>
-                      <span class="badge rounded-pill bg-<%= severity[:color] %>"><%= severity[:text] %></span>
-                      <span class="badge rounded-pill bg-<%= resolved[:color] %>"><%= resolved[:text] %></span>
-                    </strong>
-                  </h5>
-                  <span class="text-secondary d-none d-md-block">
-                    <%= incident.created_at.strftime("#{incident.created_at.day.ordinalize} of %B, %Y") %>
-                  </span>
-                </div>
-                <p><%= incident.description %></p>
-              </li>
-            <% end %>
-          </ul>
+                severity = badge_data_for_severity_level(incident.severity_level)
+                resolved = badge_data_for_resolved_status(incident.resolved)
+              %>
+                <li class="w-100">
+                  <div class="d-flex justify-content-between w-100 incident">
+                    <h5>
+                      <strong>
+                        <%= incident.title %>
+                        <span class="badge rounded-pill bg-<%= severity[:color] %>"><%= severity[:text] %></span>
+                        <span class="badge rounded-pill bg-<%= resolved[:color] %>"><%= resolved[:text] %></span>
+                      </strong>
+                    </h5>
+                    <span class="text-secondary d-none d-md-block">
+                      <%= incident.created_at.strftime("#{incident.created_at.day.ordinalize} of %B, %Y") %>
+                    </span>
+                  </div>
+                  <p><%= incident.description %></p>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
+      <% end %>
       <div class="row text-center mt-4 mb-4">
         <p>
           <%= t("footer_text") %>
