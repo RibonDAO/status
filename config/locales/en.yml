@@ -45,3 +45,4 @@ en:
   discord_community: "Discord Community"
   footer_text: "You can view real-time updates about incidents, scheduled maintenance, etc. joining our "
   footer_hint: "Incident logs can also be found in the #incidents channel."
+  we_had_an_incident: "We had an incident with one or more services."
